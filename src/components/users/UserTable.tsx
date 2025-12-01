@@ -22,7 +22,7 @@ const UserTable = ({ users, onEdit, onDelete }: Props) => {
 
   return (
     <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
+      <TableCaption>List of Users</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">No.</TableHead>

@@ -9,7 +9,7 @@ export const fetchUsers = () => {
   const loadUsers = () => {
     setLoading(true);
     userApi
-      .getAll()
+      .getAllUsers()
       .then((res) => {
         setData(res)
       })
@@ -24,14 +24,48 @@ export const fetchUsers = () => {
 }
 
 export const getUserById = (id: string) => {
-  return {};
+  const [data, setData] = useState<User>();
+  const [loading, setLoading] = useState(true);
+
+  const getUser = () => {
+    setLoading(true);
+    userApi
+      .getUserById(id)
+      .then((res) => {
+        setData(res)
+      })
+      .finally(() => setLoading(false))
+  }
+  return { data, loading, getUser };
 }
 
-export const updateUserById = (id: string) => {
-  return {}
+export const updateUserById = (id: string, user: Partial<User>) => {
+  const [data, setData] = useState<User>();
+  const [loading, setLoading] = useState(true);
+
+  const updateUser = () => {
+    setLoading(true);
+    userApi
+      .updateUserById(id, user)
+      .then((res) => {
+        setData(res)
+      })
+      .finally(() => setLoading(false))
+  }
+
+  return { data, loading, updateUser };
 }
 
 export const deleteUserById = (id: string) => {
-  return {}
+  const [loading, setLoading] = useState(true);
+
+  const deleteUser = () => {
+    setLoading(true);
+    userApi
+      .deleteUserById(id)
+      .finally(() => setLoading(false))
+  }
+
+  return { loading, deleteUser };
 }
 
